@@ -1,18 +1,21 @@
 import { PrismaClient } from "@prisma/client";
+import { todo } from "node:test";
+
 
 const prisma = new PrismaClient();
 
-async function insertUser(username: string, password: string, firstname: string, lastname: string, email: string) {
-    const response = await prisma.user.create({
-        data: {
-            username: username,
-            password: password,
-            fistname: firstname,
-            lastname: lastname,
-            email: email
+async function getTodos(userId: number) {
+    const response = await prisma.todos.findMany({
+        where: {
+            user_id: userId,
+        },
+        select: {
+            id: true,
+            title: true,
+            descripition: true,
+            user: true
         }
     })
     console.log(response)
 }
-
-insertUser("ranjikjht", "fasdfa", "ranjit", "dasfdsf", "aranjitdkjfh@gmail.com");
+getTodos(1);
