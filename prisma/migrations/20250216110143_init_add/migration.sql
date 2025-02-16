@@ -5,6 +5,7 @@ CREATE TABLE "User" (
     "password" TEXT NOT NULL,
     "fistname" TEXT NOT NULL,
     "lastname" TEXT NOT NULL,
+    "email" TEXT NOT NULL,
 
     CONSTRAINT "User_pkey" PRIMARY KEY ("id")
 );
@@ -22,3 +23,6 @@ CREATE TABLE "Todos" (
 
 -- CreateIndex
 CREATE UNIQUE INDEX "User_username_key" ON "User"("username");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
